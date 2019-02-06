@@ -19,7 +19,9 @@ package com.ivianuu.stdlibx.sample
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.ivianuu.stdlibx.dropLastUntil
 import com.ivianuu.stdlibx.dropUntil
+import com.ivianuu.stdlibx.takeLastUntil
 import com.ivianuu.stdlibx.takeUntil
 
 class MainActivity : AppCompatActivity() {
@@ -29,11 +31,17 @@ class MainActivity : AppCompatActivity() {
 
         val list = listOf(1, 2, 3, 4, 5)
         val predicate: (Int) -> Boolean = { it < 3 }
+        val lastPredicate: (Int) -> Boolean = { it > 3 }
 
         d { "take until ${list.takeUntil(predicate)}" }
         d { "take while ${list.takeWhile(predicate)}" }
+        d { "take last until ${list.takeLastUntil(lastPredicate)}" }
+        d { "take last while ${list.takeLastWhile(lastPredicate)}" }
+
         d { "drop until ${list.dropUntil(predicate)}" }
         d { "drop while ${list.dropWhile(predicate)}" }
+        d { "drop last until ${list.dropLastUntil(lastPredicate)}" }
+        d { "drop last while ${list.dropLastWhile(lastPredicate)}" }
     }
 
     private fun d(m: () -> String) {

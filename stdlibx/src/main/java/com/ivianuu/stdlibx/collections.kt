@@ -83,24 +83,21 @@ private class TakeUntilSequence<T>(
 }
 
 inline fun <T> List<T>.takeLastUntil(predicate: (T) -> Boolean): List<T> {
-    val list = mutableListOf<T>()
-    for (item in reversed()) {
-        list.add(item)
-        if (!predicate(item))
-            break
+    for (index in lastIndex downTo 0) {
+        if (!predicate(this[index])) {
+            return drop(index)
+        }
     }
-    return list
+    return toList()
 }
 
 inline fun <T> Array<out T>.takeLastUntil(predicate: (T) -> Boolean): List<T> {
-    val list = mutableListOf<T>()
-    for (item in reversed()) {
-        list.add(item)
-        if (!predicate(item))
-            break
+    for (index in lastIndex downTo 0) {
+        if (!predicate(this[index])) {
+            return drop(index)
+        }
     }
-
-    return list
+    return toList()
 }
 
 inline fun <T> Iterable<T>.dropUntil(predicate: (T) -> Boolean): List<T> {
@@ -112,6 +109,7 @@ inline fun <T> Iterable<T>.dropUntil(predicate: (T) -> Boolean): List<T> {
         else if (!predicate(item)) {
             yielding = true
         }
+
     return list
 }
 
@@ -124,6 +122,7 @@ inline fun <T> Array<out T>.dropUntil(predicate: (T) -> Boolean): List<T> {
         else if (!predicate(item)) {
             yielding = true
         }
+
     return list
 }
 
@@ -162,6 +161,24 @@ private class DropUntilSequence<T>(
             return dropState == 1 || iterator.hasNext()
         }
     }
+}
+
+inline fun <T> List<T>.dropLastUntil(predicate: (T) -> Boolean): List<T> {
+    for (index in lastIndex downTo 0) {
+        if (!predicate(this[index])) {
+            return take(index)
+        }
+    }
+    return emptyList()
+}
+
+inline fun <T> Array<out T>.dropLastUntil(predicate: (T) -> Boolean): List<T> {
+    for (index in lastIndex downTo 0) {
+        if (!predicate(this[index])) {
+            return take(index)
+        }
+    }
+    return emptyList()
 }
 
 inline fun <T, R> Iterable<T>.firstNotNullResultOrNull(transform: (T) -> R?): R? {
