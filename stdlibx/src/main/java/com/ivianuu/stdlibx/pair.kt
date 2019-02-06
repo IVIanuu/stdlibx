@@ -1,4 +1,4 @@
-package com.ivianuu.stdlibx/*
+/*
  * Copyright 2018 Manuel Wrage
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,5 +13,7 @@ package com.ivianuu.stdlibx/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package com.ivianuu.stdlibx
 
 fun <T1, T2> Pair<T1, T2>.swap(): Pair<T2, T1> = Pair(second, first)
