@@ -88,6 +88,7 @@ inline fun <T> List<T>.takeLastUntil(predicate: (T) -> Boolean): List<T> {
             return drop(index)
         }
     }
+
     return toList()
 }
 
