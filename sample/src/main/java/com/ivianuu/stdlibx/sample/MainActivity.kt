@@ -19,12 +19,11 @@ package com.ivianuu.stdlibx.sample
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.ivianuu.stdlibx.dropLastUntil
-import com.ivianuu.stdlibx.dropUntil
-import com.ivianuu.stdlibx.takeLastUntil
-import com.ivianuu.stdlibx.takeUntil
+import com.ivianuu.stdlibx.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var myTitle by lazyVar { "" }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
