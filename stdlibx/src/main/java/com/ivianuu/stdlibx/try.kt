@@ -22,5 +22,16 @@ inline fun <T> tryOrNull(block: () -> T): T? = try {
     null
 }
 
+inline fun tryOrPrint(block: () -> Unit) = try {
+    block()
+} catch (e: Exception) {
+    e.printStackTrace()
+}
+
+inline fun trySilently(block: () -> Unit) = try {
+    block()
+} catch (e: Exception) {
+}
+
 inline fun <T> tryOrElse(defaultValue: T, block: () -> T): T = tryOrNull(block)
     ?: defaultValue
