@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val list = listOf(1, 2, 3, 4, 5)
+
         val predicate: (Int) -> Boolean = { it < 3 }
         val lastPredicate: (Int) -> Boolean = { it > 3 }
 

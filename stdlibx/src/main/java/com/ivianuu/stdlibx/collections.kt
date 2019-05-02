@@ -16,6 +16,12 @@
 
 package com.ivianuu.stdlibx
 
+inline fun <T, C : Collection<T>, O> C.ifNotEmpty(body: C.() -> O?): O? =
+    if (isNotEmpty()) this.body() else null
+
+inline fun <T, O> Array<out T>.ifNotEmpty(body: Array<out T>.() -> O?): O? =
+    if (isNotEmpty()) this.body() else null
+
 inline fun <T> Iterable<T>.takeUntil(predicate: (T) -> Boolean): List<T> {
     val list = mutableListOf<T>()
     for (item in this) {
