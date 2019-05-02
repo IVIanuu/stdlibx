@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val map = map<String, Int> {
+            "one" to 1
+            "two" to 2
+        }
+
         val list = listOf(1, 2, 3, 4, 5)
         val predicate: (Int) -> Boolean = { it < 3 }
         val lastPredicate: (Int) -> Boolean = { it > 3 }
